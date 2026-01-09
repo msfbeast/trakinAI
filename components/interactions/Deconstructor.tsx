@@ -146,17 +146,20 @@ export function Deconstructor({ onClose }: { onClose: () => void }) {
                             key="complete"
                             initial={{ opacity: 0, y: 50 }}
                             animate={{ opacity: 1, y: 0 }}
-                            className="flex flex-col lg:flex-row w-full h-full gap-8 pt-20 pb-4"
+                            className="flex flex-col lg:flex-row w-full h-full pt-24 pb-8 px-8 gap-8 overflow-hidden"
                         >
-                            <div className="w-full lg:w-1/2 h-[50vh] lg:h-full rounded-[2rem] overflow-hidden relative shadow-2xl">
+                            {/* Left Col: Image */}
+                            <div className="w-full lg:w-1/2 h-1/3 lg:h-full rounded-[2rem] overflow-hidden relative shadow-2xl flex-shrink-0">
                                 {image && <img src={image} className="w-full h-full object-cover" />}
                                 <div className="absolute bottom-6 left-6 bg-white/90 backdrop-blur px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest">
                                     Source Image
                                 </div>
                             </div>
 
-                            <div className="w-full lg:w-1/2 flex flex-col h-full">
-                                <div className="flex-grow bg-zinc-50 rounded-[2rem] p-8 overflow-y-auto min-h-0 mb-6 border border-zinc-100 shadow-inner">
+                            {/* Right Col: Text & Actions - strict flex column */}
+                            <div className="w-full lg:w-1/2 flex flex-col h-2/3 lg:h-full min-h-0">
+                                {/* Scrollable Text Area */}
+                                <div className="flex-1 bg-zinc-50 rounded-[2rem] p-8 overflow-y-auto min-h-0 mb-6 border border-zinc-100 shadow-inner">
                                     <div className="text-xs font-bold uppercase tracking-widest text-zinc-400 mb-4 sticky top-0 bg-zinc-50 py-2">
                                         Deconstructed Prompt
                                     </div>
@@ -165,10 +168,11 @@ export function Deconstructor({ onClose }: { onClose: () => void }) {
                                     </p>
                                 </div>
 
-                                <div className="flex gap-4">
+                                {/* Fixed Height Actions */}
+                                <div className="flex gap-4 flex-shrink-0 h-16">
                                     <Button
                                         onClick={() => navigator.clipboard.writeText(resultPrompt)}
-                                        className="flex-1 h-16 rounded-full bg-zinc-900 text-white text-lg font-bold hover:bg-zinc-800"
+                                        className="flex-1 h-full rounded-full bg-zinc-900 text-white text-lg font-bold hover:bg-zinc-800"
                                     >
                                         Copy Prompt
                                     </Button>
@@ -176,14 +180,14 @@ export function Deconstructor({ onClose }: { onClose: () => void }) {
                                         onClick={handleExport}
                                         disabled={isExporting}
                                         variant="outline"
-                                        className="h-16 w-16 rounded-full border-2 border-zinc-200"
+                                        className="h-full w-16 rounded-full border-2 border-zinc-200"
                                     >
                                         <Download className="w-6 h-6" />
                                     </Button>
                                     <Button
                                         onClick={() => { setState("idle"); setImage(null) }}
                                         variant="outline"
-                                        className="h-16 w-16 rounded-full border-2 border-zinc-200"
+                                        className="h-full w-16 rounded-full border-2 border-zinc-200"
                                     >
                                         <Upload className="w-6 h-6" />
                                     </Button>
