@@ -24,18 +24,18 @@ export async function POST(req: Request) {
         // Using Gemini 2.0 Flash Experimental/Preview for cutting-edge performance
         const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-exp" });
 
-        const prompt = `You are optimizing for "Gemini Nano" (Code: Banana).
-    Your task is to create a **Punchy, Dense, and Vivid** image description.
-    Small models need clarity, not length.
+        const prompt = `You are optimizing for "Gemini Flash" Image Generation.
+    Your task is to create a **Balanced, High-Fidelity** image description.
+    Flash models excel with clear, structured instructions that are neither too vague nor too verbose.
 
     **Instructions:**
-    1.  **Direct & Action-Oriented**: Start immediately with the subject (e.g., "A cyberpunk samurai drawing a neon katana...").
-    2.  **Visual Keywords**: Pack lines with adjectives (e.g., "iridescent," "gritty," "volumetric").
-    3.  **No Fluff**: Remove "The image shows..." or "In this scene...".
-    4.  **Structure**: Subject + Action + Environment + Lighting + Style.
+    1.  **Medium First**: Start with the art style/medium (e.g., "A photorealistic close-up...", "A stylized 3D render...").
+    2.  **Subject Clarity**: Clearly define the subject's pose and action in the first sentence.
+    3.  **Visual Anchors**: Describe key colors, lighting, and textures explicitly.
+    4.  **No Ambiguity**: Avoid poetic metaphors; use concrete visual terms.
 
     **OUTPUT FORMAT**:
-    A single, highly descriptive paragraph. Maximum impact, minimum words.`;
+    A single, crystal-clear paragraph (approx 2-3 sentences). Precise, descriptive, and ready for high-speed generation.`;
 
         const result = await model.generateContent([
             prompt,
