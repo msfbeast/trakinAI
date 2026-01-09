@@ -1,0 +1,218 @@
+[
+  {
+    "id": "1",
+    "name": "Flux.1",
+    "description": "The new open-weight state of the art for image generation. Unmatched prompt adherence and visual fidelity.",
+    "tags": [
+      "Image",
+      "Generative",
+      "Open Source"
+    ],
+    "pricing": "Free",
+    "platforms": [
+      {
+        "type": "huggingface",
+        "url": "https://huggingface.co/black-forest-labs/FLUX.1-dev"
+      },
+      {
+        "type": "web",
+        "url": "https://blackforestlabs.ai/"
+      }
+    ],
+    "featured": true
+  },
+  {
+    "id": "2",
+    "name": "Claude 3.5 Sonnet",
+    "description": "Anthropic’s most intelligent model. Exceptional at coding, nuance, and complex reasoning tasks.",
+    "tags": [
+      "LLM",
+      "Chat",
+      "Coding"
+    ],
+    "pricing": "Freemium",
+    "platforms": [
+      {
+        "type": "web",
+        "url": "https://claude.ai/"
+      },
+      {
+        "type": "other",
+        "url": "https://docs.anthropic.com/en/docs/about-claude/models"
+      }
+    ],
+    "featured": true
+  },
+  {
+    "id": "3",
+    "name": "Krea AI",
+    "description": "Real-time AI generation and enhancement. Paint with AI in your browser with zero latency.",
+    "tags": [
+      "Real-time",
+      "Image",
+      "Video"
+    ],
+    "pricing": "Freemium",
+    "platforms": [
+      {
+        "type": "web",
+        "url": "https://www.krea.ai/"
+      },
+      {
+        "type": "github",
+        "url": "https://github.com/krea-ai"
+      }
+    ],
+    "featured": true
+  },
+  {
+    "id": "4",
+    "name": "Sora 2",
+    "description": "OpenAI’s world simulator. Generates photorealistic video up to 60s with complex camera motion.",
+    "tags": [
+      "Video",
+      "Simulation",
+      "Physics"
+    ],
+    "pricing": "Paid",
+    "platforms": [
+      {
+        "type": "web",
+        "url": "https://sora.com/"
+      }
+    ],
+    "featured": true
+  },
+  {
+    "id": "5",
+    "name": "Grok 2",
+    "description": "Real-time intelligence with access to the X platform. Uncensored, witty, and now multimodal.",
+    "tags": [
+      "LLM",
+      "Real-time",
+      "Uncensored"
+    ],
+    "pricing": "Paid",
+    "platforms": [
+      {
+        "type": "web",
+        "url": "https://grok.com/"
+      },
+      {
+        "type": "other",
+        "url": "https://x.ai/"
+      }
+    ],
+    "featured": true
+  },
+  {
+    "id": "6",
+    "name": "Midjourney v7",
+    "description": "The aesthetic gold standard. Now with 3D texture generation and improved character consistency.",
+    "tags": [
+      "Image",
+      "Art",
+      "3D"
+    ],
+    "pricing": "Paid",
+    "platforms": [
+      {
+        "type": "web",
+        "url": "https://www.midjourney.com/"
+      }
+    ]
+  },
+  {
+    "id": "7",
+    "name": "Llama 3.2",
+    "description": "Meta’s open vision-language model. Running locally on edge devices with multimodal capabilities.",
+    "tags": [
+      "LLM",
+      "Local",
+      "Vision"
+    ],
+    "pricing": "Free",
+    "platforms": [
+      {
+        "type": "huggingface",
+        "url": "https://huggingface.co/meta-llama/Llama-3.2-90B-Vision"
+      },
+      {
+        "type": "web",
+        "url": "https://llama.meta.com/"
+      }
+    ]
+  },
+  {
+    "id": "8",
+    "name": "Cursor",
+    "description": "The AI-first code editor. Built on VS Code, powered by Claude 3.5 and custom context awareness.",
+    "tags": [
+      "Coding",
+      "DevTool",
+      "Agent"
+    ],
+    "pricing": "Freemium",
+    "platforms": [
+      {
+        "type": "web",
+        "url": "https://www.cursor.com/"
+      }
+    ],
+    "featured": true
+  },
+  {
+    "id": "4d345974-f454-4067-b58d-f45ad3de6a97",
+    "name": "Masterpiece Studio Pro",
+    "description": "AI-powered 3D creation suite excelling in generating and rigging custom 3D avatars.",
+    "tags": [
+      "3D Generation",
+      "Avatars",
+      "Animation"
+    ],
+    "pricing": "Paid",
+    "platforms": [
+      {
+        "type": "web",
+        "url": "https://masterpiecestudio.com/"
+      }
+    ],
+    "featured": false
+  },
+  {
+    "id": "a36f348d-0ef1-443e-b727-23acd7f16eee",
+    "name": "Cognosys AI",
+    "description": "Platform for building, deploying, and managing AI agents with advanced reasoning.",
+    "tags": [
+      "Agents",
+      "Automation",
+      "No-code"
+    ],
+    "pricing": "Freemium",
+    "platforms": [
+      {
+        "type": "web",
+        "url": "https://www.cognosys.ai/"
+      }
+    ],
+    "featured": false
+  },
+  {
+    "id": "6c931a45-88d9-4ee7-a44e-f57797018d8f",
+    "name": "Haiper",
+    "description": "Next-gen video generation tool specializing in realistic scenes and smooth camera motion.",
+    "tags": [
+      "Video",
+      "AI Video Generation",
+      "Realistic"
+    ],
+    "pricing": "Paid",
+    "platforms": [
+      {
+        "type": "web",
+        "url": "https://haiper.ai/"
+      }
+    ],
+    "featured": false
+  }
+]
