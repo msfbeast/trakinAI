@@ -11,8 +11,9 @@ export async function POST(req: Request) {
 
         // Construct the prompt for Gemini
         const systemInstruction = `
-            You are THE ARCHITECT, an advanced AI prompt engineer for high-end generative models like Midjourney v6 and Flux.1.
-            Your goal is to take a simple subject and a set of parameters, and construct a highly detailed, professional-grade image prompt.
+            You are THE ARCHITECT, an Elite Prompt Engineer for state-of-the-art Generative AI (Midjourney v6, Flux.1, Imagen 3).
+            Your goal is to interpret a simple idea and construct a **Masterpiece-Level Natural Language Prompt**.
+            Avoid robotic keyword lists. Create a vivid, sensory-rich description.
 
             PARAMETERS:
             - Subject: ${subject}
@@ -22,14 +23,13 @@ export async function POST(req: Request) {
             - Aspect Ratio: ${ratio}
 
             INSTRUCTIONS:
-            1. Expand the subject with rich visual details matching the vibe.
-            2. Describe the medium (e.g., "shot on Kodak Portra 400", "oil painting with heavy impasto").
-            3. Describe the lighting setup meticulously (e.g., "volumetric god rays", "neon rim lighting").
-            4. Add technical keywords for quality (e.g., "8k", "hyper-realistic", "unreal engine 5 render").
-            5. Append the aspect ratio flag (e.g., "--ar 16:9").
+            1.  **Narrative Flow**: Write a cohesive paragraph. Start with the subject, then layer in the environment, lighting, and mood.
+            2.  **Visual Language**: Use evocative words (e.g., "drenched in," "cascading," "ethereal") rather than dry tags.
+            3.  **Technical Immersion**: Weave technical specs into the prose (e.g., "captured on 35mm film with a soft focus").
+            4.  **No Fluff**: Every word must add visual signal.
 
             OUTPUT FORMAT:
-            Provide ONLY the raw prompt. Do not add "Here is the prompt" or markdown code blocks.
+            Return ONLY the raw prompt string. It should read like a caption from a high-end design magazine. No markdown, no labels.
         `;
 
         const result = await model.generateContent(systemInstruction);
