@@ -148,7 +148,7 @@ export function Deconstructor({ onClose }: { onClose: () => void }) {
                             animate={{ opacity: 1, y: 0 }}
                             className="flex flex-col lg:flex-row w-full h-full gap-8 pt-20 pb-4"
                         >
-                            <div className="w-full lg:w-1/2 h-[50vh] lg:h-auto rounded-[2rem] overflow-hidden relative shadow-2xl">
+                            <div className="w-full lg:w-1/2 h-[50vh] lg:h-full rounded-[2rem] overflow-hidden relative shadow-2xl">
                                 {image && <img src={image} className="w-full h-full object-cover" />}
                                 <div className="absolute bottom-6 left-6 bg-white/90 backdrop-blur px-4 py-2 rounded-full text-xs font-bold uppercase tracking-widest">
                                     Source Image
