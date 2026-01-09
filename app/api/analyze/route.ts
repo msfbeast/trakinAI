@@ -24,19 +24,19 @@ export async function POST(req: Request) {
         // Using Gemini 2.0 Flash Experimental/Preview for cutting-edge performance
         const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-exp" });
 
-        const prompt = `You are a Reverse Engineering Expert for Generative AI. 
-    Your task is to deconstruct this image into a single, highly technical "Master Prompt" capable of reproducing it exactly in Midjourney v6 or Flux.1.
-    
-    Focus intensively on these layers:
-    1.  **Subject & Action**: Precise description of the core subject, pose, and activity.
-    2.  **Visual Style**: Specific artistic medium (e.g., "Cinematic Film Still", "3D Octane Render", "Oil Painting on Canvas").
-    3.  **Technical Specs**: Camera (e.g., "Leica M6", "Sony A7R IV"), Lens (e.g., "35mm f/1.4", "85mm Macro"), Film Stock (e.g., "Kodak Portra 400"), or Engine (e.g., "Unreal Engine 5").
-    4.  **Lighting & Atmosphere**: Exact lighting setup (e.g., "Rembrandt lighting", "Volumetric god rays", "Neon rim light", "Subsurface scattering").
-    5.  **Composition**: Framing and angle (e.g., "Dutch angle", "Wide shot", "Center-weighted", "Bokeh background").
-    6.  **Micro-Details**: Texture and imperfections (e.g., "Film grain", "Chromatic aberration", "Dust motes", "Hyper-detailed textures").
+        const prompt = `You are an Expert Prompt Engineer for Gemini (Imagen 3).
+    Your task is to deconstruct this image into a fluid, descriptive, and highly detailed natural language prompt.
+    Unlike Midjourney, Gemini prefers complete sentences and rich context over keyword soup.
+
+    **Structure your response as a single, cohesive paragraph covering:**
+    1.  **Subject**: Start with a clear sentence describing the main subject and action.
+    2.  **Setting & Context**: Describe the environment, background, and atmosphere naturally.
+    3.  **Artistic Style**: Integrate the style (e.g., "photorealistic," "3D render") into the sentences (e.g., "Rendered in a hyper-realistic 3D style...").
+    4.  **Lighting & Color**: Describe the lighting mood (e.g., "bathed in soft, golden hour sunlight").
+    5.  **Technical Nuances**: Weave technical details into the description (e.g., "captured with a shallow depth of field focusing sharply on the subject").
 
     **OUTPUT FORMAT**:
-    Return ONLY the raw prompt string. Do not use labels like "Subject:" or bullet points. Connect strict keywords and descriptive sentences with commas. Make it dense, vivid, and technically precise.`;
+    Return ONLY the raw prompt string. It should read like a vivid story or a detailed caption from a high-end photography magazine. Do not use bullet points or labels.`;
 
         const result = await model.generateContent([
             prompt,
