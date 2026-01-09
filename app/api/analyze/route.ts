@@ -24,18 +24,23 @@ export async function POST(req: Request) {
         // Using Gemini 2.0 Flash Experimental/Preview for cutting-edge performance
         const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-exp" });
 
-        const prompt = `You are optimizing for "Gemini Flash" Image Generation.
-    Your task is to create a **Balanced, High-Fidelity** image description.
-    Flash models excel with clear, structured instructions that are neither too vague nor too verbose.
+        const prompt = `You are an Elite Reverse Engineer for High-End AI Image Generation (Imagen 3 / Gemini Ultra).
+    Your task is to deconstruct this image into a **Masterpiece-Level Natural Language Prompt**.
+    "Basic" is failure. We need extreme depth, nuance, and visual richness.
 
     **Instructions:**
-    1.  **Medium First**: Start with the art style/medium (e.g., "A photorealistic close-up...", "A stylized 3D render...").
-    2.  **Subject Clarity**: Clearly define the subject's pose and action in the first sentence.
-    3.  **Visual Anchors**: Describe key colors, lighting, and textures explicitly.
-    4.  **No Ambiguity**: Avoid poetic metaphors; use concrete visual terms.
+    1.  **Macro to Micro**: Start with the scene, then zoom into textures, lighting, and tiny details.
+    2.  **Sensory Language**: Don't just see it; describe the *feeling* of the light, the *weight* of the materials.
+    3.  **Technical & Artistic Fusion**: Combine artistic terms (e.g., "chiaroscuro", "impasto") with technical specs (e.g., "85mm focal length", "volumetric fog").
+    4.  **No Hallucinations**: Be precise about what is actually there, but describe it beautifully.
+
+    **Structure:**
+    - **Paragraph 1 (The Core)**: Subject, Action, and immediate surroundings.
+    - **Paragraph 2 (The Atmosphere)**: Lighting, Color Palette, Mood, and Camera nuance.
+    - **Paragraph 3 (The Texture)**: Imperfections, surface details, and fine-grain focus.
 
     **OUTPUT FORMAT**:
-    A single, crystal-clear paragraph (approx 2-3 sentences). Precise, descriptive, and ready for high-speed generation.`;
+    A rich, multi-paragraph text block. Do not use labels. Make it dense, evocative, and exhaustive.`;
 
         const result = await model.generateContent([
             prompt,
