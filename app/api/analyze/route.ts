@@ -24,15 +24,19 @@ export async function POST(req: Request) {
         // Using Gemini 2.0 Flash Experimental/Preview for cutting-edge performance
         const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash-exp" });
 
-        const prompt = `Analyze this image deeply. I need a robust text-to-image prompt to recreate it exactly.
-    Include these specific details:
-    1.  **Subject & Action**: What is happening? Who/what is the focus?
-    2.  **Camera & Angle**: (e.g., Low angle, wide shot, macro, telephoto, top-down).
-    3.  **Lighting**: (e.g., Soft studio light, hard rim light, volumetric fog, neon cyberpunk, golden hour).
-    4.  **Style & Medium**: (e.g., 3D Render, Oil Painting, Hyperrealistic Photography, Anime, Sketch).
-    5.  **Technical Details**: (e.g., 8k, highly detailed, depth of field, bokeh, f/1.8).
+        const prompt = `You are a Reverse Engineering Expert for Generative AI. 
+    Your task is to deconstruct this image into a single, highly technical "Master Prompt" capable of reproducing it exactly in Midjourney v6 or Flux.1.
     
-    Format the output as a single raw prompt string suitable for Midjourney or Stable Diffusion. Do not include labels like "Subject:" or "Lighting:". Just the comma-separated keywords and sentences.`;
+    Focus intensively on these layers:
+    1.  **Subject & Action**: Precise description of the core subject, pose, and activity.
+    2.  **Visual Style**: Specific artistic medium (e.g., "Cinematic Film Still", "3D Octane Render", "Oil Painting on Canvas").
+    3.  **Technical Specs**: Camera (e.g., "Leica M6", "Sony A7R IV"), Lens (e.g., "35mm f/1.4", "85mm Macro"), Film Stock (e.g., "Kodak Portra 400"), or Engine (e.g., "Unreal Engine 5").
+    4.  **Lighting & Atmosphere**: Exact lighting setup (e.g., "Rembrandt lighting", "Volumetric god rays", "Neon rim light", "Subsurface scattering").
+    5.  **Composition**: Framing and angle (e.g., "Dutch angle", "Wide shot", "Center-weighted", "Bokeh background").
+    6.  **Micro-Details**: Texture and imperfections (e.g., "Film grain", "Chromatic aberration", "Dust motes", "Hyper-detailed textures").
+
+    **OUTPUT FORMAT**:
+    Return ONLY the raw prompt string. Do not use labels like "Subject:" or bullet points. Connect strict keywords and descriptive sentences with commas. Make it dense, vivid, and technically precise.`;
 
         const result = await model.generateContent([
             prompt,
