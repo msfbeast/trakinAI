@@ -156,8 +156,8 @@ export function Deconstructor({ onClose }: { onClose: () => void }) {
                             </div>
 
                             <div className="w-full lg:w-1/2 flex flex-col h-full">
-                                <div className="flex-grow bg-zinc-50 rounded-[2rem] p-8 overflow-y-auto mb-6">
-                                    <div className="text-xs font-bold uppercase tracking-widest text-zinc-400 mb-4">
+                                <div className="flex-grow bg-zinc-50 rounded-[2rem] p-8 overflow-y-auto min-h-0 mb-6 border border-zinc-100 shadow-inner">
+                                    <div className="text-xs font-bold uppercase tracking-widest text-zinc-400 mb-4 sticky top-0 bg-zinc-50 py-2">
                                         Deconstructed Prompt
                                     </div>
                                     <p className="text-lg md:text-xl font-medium text-zinc-900 leading-relaxed whitespace-pre-wrap">
