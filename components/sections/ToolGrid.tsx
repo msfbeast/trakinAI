@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { FlashlightCard } from "@/components/ui/FlashlightCard"
 import { LayoutGrid, List as ListIcon, MoveUpRight, Zap, GalleryHorizontal } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
@@ -14,7 +14,25 @@ interface ToolGridProps {
 }
 
 export function ToolGrid({ tools, onSelect }: ToolGridProps) {
+    // Auto-detect view mode based on screen size
     const [viewMode, setViewMode] = useState<'grid' | 'list' | 'carousel'>('carousel')
+
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth >= 1024) {
+                setViewMode('grid') // Desktop: grid view
+            } else {
+                setViewMode('carousel') // Mobile: carousel view
+            }
+        }
+
+        // Set initial view
+        handleResize()
+
+        // Listen for resize events
+        window.addEventListener('resize', handleResize)
+        return () => window.removeEventListener('resize', handleResize)
+    }, [])
 
     return (
         <section id="collection" className="py-24 px-6 lg:px-12 max-w-[1800px] mx-auto">
@@ -28,12 +46,15 @@ export function ToolGrid({ tools, onSelect }: ToolGridProps) {
                     </p>
                 </div>
 
-                <div className="flex gap-2 p-1 bg-zinc-100 rounded-lg">
+                <div className="flex gap-1 p-1 bg-white border border-zinc-200 rounded-xl shadow-sm">
                     <Button
                         onClick={() => setViewMode('carousel')}
                         variant="ghost"
                         size="sm"
-                        className={`rounded-md ${viewMode === 'carousel' ? 'bg-white shadow-sm' : 'text-zinc-400'}`}
+                        className={`rounded-lg transition-all ${viewMode === 'carousel'
+                                ? 'bg-zinc-900 text-white hover:bg-zinc-800'
+                                : 'text-zinc-400 hover:text-zinc-900 hover:bg-zinc-50'
+                            }`}
                     >
                         <GalleryHorizontal className="w-4 h-4" />
                     </Button>
@@ -41,7 +62,10 @@ export function ToolGrid({ tools, onSelect }: ToolGridProps) {
                         onClick={() => setViewMode('grid')}
                         variant="ghost"
                         size="sm"
-                        className={`rounded-md ${viewMode === 'grid' ? 'bg-white shadow-sm' : 'text-zinc-400'}`}
+                        className={`rounded-lg transition-all ${viewMode === 'grid'
+                                ? 'bg-zinc-900 text-white hover:bg-zinc-800'
+                                : 'text-zinc-400 hover:text-zinc-900 hover:bg-zinc-50'
+                            }`}
                     >
                         <LayoutGrid className="w-4 h-4" />
                     </Button>
@@ -49,7 +73,10 @@ export function ToolGrid({ tools, onSelect }: ToolGridProps) {
                         onClick={() => setViewMode('list')}
                         variant="ghost"
                         size="sm"
-                        className={`rounded-md ${viewMode === 'list' ? 'bg-white shadow-sm' : 'text-zinc-400'}`}
+                        className={`rounded-lg transition-all ${viewMode === 'list'
+                                ? 'bg-zinc-900 text-white hover:bg-zinc-800'
+                                : 'text-zinc-400 hover:text-zinc-900 hover:bg-zinc-50'
+                            }`}
                     >
                         <ListIcon className="w-4 h-4" />
                     </Button>
