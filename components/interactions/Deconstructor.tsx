@@ -20,7 +20,12 @@ export function Deconstructor({ onClose }: { onClose: () => void }) {
         try {
             const node = document.getElementById('export-dossier')
             if (node) {
-                const dataUrl = await toPng(node, { quality: 0.95, pixelRatio: 2 })
+                const dataUrl = await toPng(node, {
+                    quality: 0.95,
+                    pixelRatio: 2,
+                    backgroundColor: '#ffffff',
+                    style: { opacity: '1', visibility: 'visible' }
+                })
                 saveAs(dataUrl, `TRAKIN_EVIDENCE_${Date.now()}.png`)
             }
         } catch (err) {
@@ -57,6 +62,18 @@ export function Deconstructor({ onClose }: { onClose: () => void }) {
             if (data.prompt) {
                 setResultPrompt(data.prompt);
                 setState("complete");
+
+                // AUTO-SAVE TO VAULT
+                fetch('/api/vault/save', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        tool_id: 'deconstructor',
+                        input_data: { image_preview: imageData.slice(0, 100) + '...' }, // Don't save full base64 to DB to save space, or maybe save to Storage in Phase 3
+                        output_text: data.prompt
+                    })
+                }).catch(err => console.error("Auto-save failed", err));
+
             } else {
                 setResultPrompt("// ANALYSIS ERROR");
                 setState("complete");
@@ -92,7 +109,7 @@ export function Deconstructor({ onClose }: { onClose: () => void }) {
                 </Button>
             </div>
 
-            <div className="flex-grow relative z-10 p-8 flex flex-col items-center justify-center">
+            <div className="flex-grow relative z-10 p-8 flex flex-col items-center justify-center h-full overflow-hidden">
                 <input
                     type="file"
                     ref={fileInputRef}
@@ -131,7 +148,7 @@ export function Deconstructor({ onClose }: { onClose: () => void }) {
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
-                            className="flex flex-col items-center"
+                            className="flex flex-col items-center justify-center h-full w-full"
                         >
                             <div className="relative w-48 h-48 mb-8">
                                 {image && <img src={image} className="w-full h-full object-cover rounded-full opacity-50 grayscale" />}
@@ -146,7 +163,7 @@ export function Deconstructor({ onClose }: { onClose: () => void }) {
                             key="complete"
                             initial={{ opacity: 0, y: 50 }}
                             animate={{ opacity: 1, y: 0 }}
-                            className="flex flex-col lg:flex-row w-full h-full pt-24 pb-8 px-8 gap-8 overflow-hidden"
+                            className="flex flex-col lg:flex-row w-full h-full pt-24 pb-8 px-8 gap-8 overflow-hidden relative z-20 pointer-events-auto"
                         >
                             {/* Left Col: Image */}
                             <div className="w-full lg:w-1/2 h-1/3 lg:h-full rounded-[2rem] overflow-hidden relative shadow-2xl flex-shrink-0">
@@ -159,7 +176,7 @@ export function Deconstructor({ onClose }: { onClose: () => void }) {
                             {/* Right Col: Text & Actions - strict flex column */}
                             <div className="w-full lg:w-1/2 flex flex-col h-2/3 lg:h-full min-h-0">
                                 {/* Scrollable Text Area */}
-                                <div className="flex-1 bg-zinc-50 rounded-[2rem] p-8 overflow-y-auto min-h-0 mb-6 border border-zinc-100 shadow-inner">
+                                <div className="flex-1 bg-zinc-50 rounded-[2rem] p-8 overflow-y-auto min-h-0 mb-6 border border-zinc-100 shadow-inner relative z-30 pointer-events-auto">
                                     <div className="text-xs font-bold uppercase tracking-widest text-zinc-400 mb-4 sticky top-0 bg-zinc-50 py-2">
                                         Deconstructed Prompt
                                     </div>
@@ -169,7 +186,7 @@ export function Deconstructor({ onClose }: { onClose: () => void }) {
                                 </div>
 
                                 {/* Fixed Height Actions */}
-                                <div className="flex gap-4 flex-shrink-0 h-16">
+                                <div className="flex gap-4 flex-shrink-0 h-16 relative z-30 pointer-events-auto">
                                     <Button
                                         onClick={() => navigator.clipboard.writeText(resultPrompt)}
                                         className="flex-1 h-full rounded-full bg-zinc-900 text-white text-lg font-bold hover:bg-zinc-800"
@@ -198,20 +215,50 @@ export function Deconstructor({ onClose }: { onClose: () => void }) {
                 </AnimatePresence>
             </div>
 
-            {/* Hidden Export Template */}
-            <div id="export-dossier" className="fixed top-0 left-0 w-[1200px] h-[800px] bg-white p-12 opacity-0 pointer-events-none z-[-1]">
-                <div className="w-full h-full flex gap-12 border-[20px] border-zinc-950 p-12">
-                    <div className="w-1/2 h-full bg-zinc-100 relative">
-                        {image && <img src={image} className="w-full h-full object-cover grayscale contrast-125 mix-blend-multiply" />}
+            {/* Hidden Export Template - Uses style override to capture at full opacity */}
+            <div id="export-dossier" className="fixed top-0 left-0 w-[1200px] h-[800px] bg-white pointer-events-none z-[-50] opacity-0 font-sans text-zinc-900">
+                <div className="w-full h-full flex">
+                    {/* Left Col: Full Color Image */}
+                    <div className="w-[60%] h-full relative">
+                        {image && <img src={image} className="w-full h-full object-cover" />}
+                        {/* Overlay Gradient for text readability if needed, but here we separate text */}
                     </div>
-                    <div className="w-1/2 h-full flex flex-col justify-between">
+
+                    {/* Right Col: Typography & Details */}
+                    <div className="w-[40%] h-full flex flex-col justify-between p-16 bg-white border-l border-zinc-100">
                         <div>
-                            <h1 className="text-8xl font-black tracking-tighter leading-[0.8] mb-8">VISUAL<br />STUDY</h1>
-                            <p className="text-2xl font-bold font-mono uppercase text-zinc-400">GEN_ID: {Date.now().toString().slice(-4)}</p>
+                            <div className="flex items-center gap-4 mb-2">
+                                <span className="w-3 h-3 rounded-full bg-blue-500" />
+                                <span className="text-sm font-bold tracking-widest uppercase text-zinc-400">Trakin.AI Deconstructor</span>
+                            </div>
+                            <h1 className="text-7xl font-black tracking-tighter leading-none mb-8 text-black">
+                                VISUAL<br />STUDY
+                            </h1>
+                            <div className="h-1 w-24 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 mb-8" />
+
+                            <p className="text-sm font-bold font-mono text-zinc-400 mb-2">GEN_ID</p>
+                            <p className="text-4xl font-mono text-zinc-900 mb-8">{Date.now().toString().slice(-6)}</p>
                         </div>
-                        <p className="text-3xl font-medium leading-tight">
-                            {resultPrompt.slice(0, 400)}...
-                        </p>
+
+                        <div className="flex-grow overflow-hidden relative">
+                            {/* Fading text container */}
+                            <p className="text-2xl font-medium leading-relaxed text-zinc-600 pb-12">
+                                {resultPrompt.slice(0, 500)}
+                                {resultPrompt.length > 500 && "..."}
+                            </p>
+                            <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-white to-transparent" />
+                        </div>
+
+                        <div className="pt-8 border-t border-zinc-200 flex justify-between items-end">
+                            <div>
+                                <p className="text-xs font-bold uppercase tracking-widest text-zinc-400">Model</p>
+                                <p className="text-lg font-bold">Gemini 2.5 Flash</p>
+                            </div>
+                            <div className="text-right">
+                                <p className="text-xs font-bold uppercase tracking-widest text-zinc-400">Date</p>
+                                <p className="text-lg font-bold">{new Date().toLocaleDateString()}</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

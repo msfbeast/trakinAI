@@ -3,7 +3,7 @@
 import * as React from "react"
 import { X } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
-import { cn } from "@/components/ui/badge"
+import { cn } from "@/lib/utils"
 
 interface ModalProps {
     isOpen: boolean

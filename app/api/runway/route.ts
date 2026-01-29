@@ -5,10 +5,9 @@ const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || "");
 // Use generation-config to force JSON response if supported, but prompt engineering usually works.
 // Enabling googleSearchRetrieval tool for real-time data.
 const model = genAI.getGenerativeModel({
-    model: "gemini-2.0-flash-exp",
+    model: "gemini-2.5-flash",
     // @ts-expect-error: Experimental feature
-    tools: [{ googleSearch: {} }],
-    generationConfig: { responseMimeType: "application/json" }
+    tools: [{ googleSearch: {} }]
 });
 
 export async function GET() {

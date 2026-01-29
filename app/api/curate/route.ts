@@ -10,10 +10,9 @@ export async function POST() {
 
     const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || "");
     const model = genAI.getGenerativeModel({
-        model: "gemini-2.0-flash-exp",
+        model: "gemini-2.5-flash",
         // @ts-expect-error: Experimental feature not yet in types
-        tools: [{ googleSearch: {} }],
-        generationConfig: { responseMimeType: "application/json" }
+        tools: [{ googleSearch: {} }]
     });
 
     try {

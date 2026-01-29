@@ -214,5 +214,119 @@
       }
     ],
     "featured": false
+  },
+  {
+    "id": "7e1612d0-f6d9-4760-8141-ba9915c1808d",
+    "name": "Masterpiece X",
+    "description": "AI-powered 3D creation suite for generating, rigging, and animating 3D assets. Updated with new features.",
+    "tags": [
+      "3D Generation",
+      "Animation",
+      "AI"
+    ],
+    "pricing": "Freemium",
+    "platforms": [
+      {
+        "type": "web",
+        "url": "https://masterpiecex.com"
+      }
+    ],
+    "featured": false
+  },
+  {
+    "id": "314e82b0-90e6-49e9-a86a-7a2c3ed63885",
+    "name": "ReAct Agent v3",
+    "description": "Advanced agent framework for complex task automation, improved reasoning, and tool integration.",
+    "tags": [
+      "Agents",
+      "Automation",
+      "AI"
+    ],
+    "pricing": "Paid",
+    "platforms": [
+      {
+        "type": "web",
+        "url": "https://reactagent.ai"
+      },
+      {
+        "type": "github",
+        "url": "https://github.com/reactagent/v3"
+      }
+    ],
+    "featured": false
+  },
+  {
+    "id": "ecc9b152-1278-48f4-aef4-24b40d67f402",
+    "name": "VideoFusion Pro",
+    "description": "AI video generation tool with enhanced realism, editing features, and multi-scene support.",
+    "tags": [
+      "Video",
+      "AI",
+      "Generation"
+    ],
+    "pricing": "Freemium",
+    "platforms": [
+      {
+        "type": "web",
+        "url": "https://videofusion.pro"
+      }
+    ],
+    "featured": false
+  },
+  {
+    "id": "713001c6-9571-46d5-9b8a-1cf48f69322b",
+    "name": "Google DeepMind Genie 3",
+    "description": "Generates interactive 3D environments from text prompts, including physics and memory.",
+    "tags": [
+      "3D Generation",
+      "Interactive Environments"
+    ],
+    "pricing": "Freemium",
+    "platforms": [
+      {
+        "type": "web",
+        "url": "https://labs.google.com/"
+      }
+    ],
+    "featured": false
+  },
+  {
+    "id": "8ff09784-1c71-48ac-a137-af12b3044686",
+    "name": "Moltbot",
+    "description": "Self-hosted, proactive open-source AI assistant for executing real-world tasks on user's hardware.",
+    "tags": [
+      "Agents",
+      "Open-Source",
+      "Self-Hosted"
+    ],
+    "pricing": "Free",
+    "platforms": [
+      {
+        "type": "web",
+        "url": "Not available publicly as of now (early 2026), but noted as open-source with GitHub mention."
+      },
+      {
+        "type": "github",
+        "url": "Not available publicly as of now (early 2026), but noted as open-source with GitHub mention."
+      }
+    ],
+    "featured": false
+  },
+  {
+    "id": "23cdc90a-9924-4a19-a1f6-2cd1c0d536a6",
+    "name": "Kling 2.6",
+    "description": "AI video generator excelling in realistic character movement and dialogue for cinematic visuals.",
+    "tags": [
+      "Video",
+      "Character Animation"
+    ],
+    "pricing": "Paid",
+    "platforms": [
+      {
+        "type": "web",
+        "url": "https://klingai.com/global"
+      }
+    ],
+    "featured": false
   }
 ]

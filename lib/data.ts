@@ -17,6 +17,7 @@ export interface Tool {
   }[];
   image?: string;
   featured?: boolean;
+  created_at?: string; // Optional because local JSON doesn't always have it
 }
 
 const DB_PATH = path.join(process.cwd(), 'lib/db.json');

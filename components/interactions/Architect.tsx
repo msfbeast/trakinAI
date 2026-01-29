@@ -26,7 +26,19 @@ export function Architect({ onClose }: { onClose: () => void }) {
             })
             const data = await res.json()
             if (data.prompt) {
-                setResult(data.prompt)
+                setResult(data.prompt) // Note: Need to verify if state is named result or resultPrompt
+
+                // AUTO-SAVE TO VAULT
+                fetch('/api/vault/save', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        tool_id: 'architect',
+                        input_data: { subject, vibe, medium, lighting, ratio },
+                        output_text: data.prompt
+                    })
+                }).catch(err => console.error("Auto-save failed", err));
+
             } else if (data.error) {
                 setResult(`Error: ${data.error}`)
             }
