@@ -9,8 +9,10 @@ import { Runway } from "@/components/interactions/Runway";
 import { ToolDetails } from "@/components/interactions/ToolDetails";
 import { AuthModal } from "@/components/interactions/AuthModal";
 import { VaultModal } from "@/components/interactions/VaultModal";
+import { AccountModal } from "@/components/interactions/AccountModal";
 import { createClient } from "@/lib/supabase/client";
 import { User } from "@supabase/supabase-js";
+import { useActivityLogger } from "@/lib/hooks/useActivityLogger";
 
 // Layout & Sections
 import { Header } from "@/components/layout/Header";
@@ -33,7 +35,11 @@ export default function ClientHome({ initialTools }: ClientHomeProps) {
   const [isArchitectOpen, setIsArchitectOpen] = useState(false);
   const [isVaultOpen, setIsVaultOpen] = useState(false);
   const [isAuthOpen, setIsAuthOpen] = useState(false);
+  const [isAccountOpen, setIsAccountOpen] = useState(false);
   const [showFilters, setShowFilters] = useState(false);
+
+  // Activity Logger
+  const { logActivity } = useActivityLogger();
 
   // Async State
   const [isSyncing, setIsSyncing] = useState(false);
@@ -114,6 +120,7 @@ export default function ClientHome({ initialTools }: ClientHomeProps) {
         onOpenDeconstructor={() => setIsDeconstructorOpen(true)}
         onOpenVault={() => setIsVaultOpen(true)}
         onOpenAuth={() => setIsAuthOpen(true)}
+        onOpenAccount={() => setIsAccountOpen(true)}
         showFilters={showFilters}
         setShowFilters={setShowFilters}
         setSearch={setSearch}
@@ -142,9 +149,17 @@ export default function ClientHome({ initialTools }: ClientHomeProps) {
 
       {/* --- Modals Layer --- */}
 
-      <Modal isOpen={!!selectedTool} onClose={() => setSelectedTool(null)}>
+      <Modal isOpen={!!selectedTool} onClose={() => {
+        setSelectedTool(null)
+      }}>
         {selectedTool && <ToolDetails tool={selectedTool} />}
       </Modal>
+
+      {/* Track tool views */}
+      {selectedTool && (() => {
+        logActivity('tool_view', { tool_id: selectedTool.id, tool_name: selectedTool.name })
+        return null
+      })()}
 
       <Modal
         isOpen={isDeconstructorOpen}
@@ -176,6 +191,14 @@ export default function ClientHome({ initialTools }: ClientHomeProps) {
         className="p-0 border-0 bg-transparent shadow-none w-auto h-auto"
       >
         <AuthModal onClose={() => setIsAuthOpen(false)} />
+      </Modal>
+
+      <Modal
+        isOpen={isAccountOpen}
+        onClose={() => setIsAccountOpen(false)}
+        className="p-0 border-0 bg-transparent shadow-none w-auto h-auto"
+      >
+        <AccountModal onClose={() => setIsAccountOpen(false)} />
       </Modal>
 
     </main >

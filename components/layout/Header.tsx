@@ -12,6 +12,7 @@ interface HeaderProps {
     onOpenDeconstructor: () => void
     onOpenVault: () => void
     onOpenAuth: () => void
+    onOpenAccount: () => void
     showFilters: boolean
     setShowFilters: (show: boolean) => void
     setSearch: (term: string) => void
@@ -25,6 +26,7 @@ export function Header({
     onOpenDeconstructor,
     onOpenVault,
     onOpenAuth,
+    onOpenAccount,
     showFilters,
     setShowFilters,
     setSearch,
@@ -76,9 +78,17 @@ export function Header({
                                     {profile?.energy_credits ?? '-'}/{profile?.max_energy ?? '-'}
                                 </span>
                             </div>
-                            <div className="w-8 h-8 rounded-full bg-zinc-900 text-white flex items-center justify-center font-bold text-xs ring-2 ring-white shadow-sm">
+                            <button
+                                onClick={onOpenAccount}
+                                className="w-8 h-8 rounded-full bg-zinc-900 text-white flex items-center justify-center font-bold text-xs ring-2 ring-white shadow-sm hover:ring-zinc-300 transition-all cursor-pointer relative"
+                            >
                                 {user.email?.[0].toUpperCase()}
-                            </div>
+                                {profile?.energy_credits > 0 && (
+                                    <div className="absolute -top-1 -right-1 w-4 h-4 bg-yellow-400 rounded-full flex items-center justify-center text-zinc-900 text-[10px] font-black">
+                                        {profile.energy_credits}
+                                    </div>
+                                )}
+                            </button>
                         </div>
                     ) : (
                         <Button
