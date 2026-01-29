@@ -29,7 +29,7 @@ export function Runway() {
         <section className="py-24 bg-zinc-900 text-white overflow-hidden">
             <div className="px-6 lg:px-12 mb-12 flex justify-between items-end">
                 <div>
-                    <h2 className="text-6xl md:text-8xl font-black tracking-tighter leading-none mb-4">
+                    <h2 className="text-6xl md:text-8xl font-black tracking-tight leading-none mb-4">
                         THE RUNWAY
                     </h2>
                     <p className="text-zinc-500 font-mono text-sm uppercase tracking-widest max-w-md">
