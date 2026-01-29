@@ -74,7 +74,7 @@ export function Runway() {
                                     ))}
                                 </div>
 
-                                <h3 className="text-5xl font-black tracking-tighter leading-[0.9] mb-4 break-words">
+                                <h3 className="text-5xl font-black tracking-tight leading-[0.9] mb-4 break-words">
                                     {concept.name}
                                 </h3>
                                 <div className="h-px w-12 bg-current mb-4" />
