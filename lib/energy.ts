@@ -38,7 +38,7 @@ export async function checkAndConsumeEnergy(userId: string) {
     // 4. Consume
     await supabase
         .from('profiles')
-        .decrement('energy_credits', 1)
+        .update({ energy_credits: profile.energy_credits - 1 })
         .eq('id', userId)
 
     return true
