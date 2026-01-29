@@ -38,15 +38,6 @@ export function Hero() {
                         Explore Tools
                         <ArrowRight className="w-5 h-5 ml-2" />
                     </Button>
-                    <Button
-                        size="lg"
-                        variant="outline"
-                        className="rounded-full h-14 px-8 border-2 border-zinc-200 text-zinc-900 font-bold text-lg hover:bg-zinc-50"
-                        onClick={() => window.open('https://github.com/msfbeast/trakinAI', '_blank')}
-                    >
-                        GitHub
-                        <ExternalLink className="w-5 h-5 ml-2" />
-                    </Button>
                 </div>
             </div>
 
